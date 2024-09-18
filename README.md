@@ -1,5 +1,4 @@
 
-
 # AI Crop Disease Detection
 
 This project aims to assist farmers by providing an AI-powered solution to detect diseases in crops through image analysis. The system uses machine learning models trained on crop images to identify diseases and provide treatment suggestions. The goal is to help farmers detect crop diseases early and take necessary actions to reduce crop losses.
@@ -102,4 +101,3 @@ This project uses the **PlantVillage dataset**, a publicly available dataset con
 
 ## Contributing
 We welcome contributions! Please open an issue or submit a pull request if you have suggestions or improvements.
-
