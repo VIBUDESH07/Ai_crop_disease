@@ -1,3 +1,4 @@
+---
 
 # AI Crop Disease Detection
 
@@ -23,15 +24,17 @@ The following flowchart outlines the basic workflow of the AI Crop Disease Detec
 
 ```mermaid
 graph TD
-    A[Image Upload] --> B[Image Preprocessing]
-    B --> C[Model Inference]
+    A[User Uploads Image] --> B[Image Preprocessing]
+    B --> C[Pass Image to CNN Model]
     C --> D{Disease Detected?}
-    D -- Yes --> E[Display Disease Prediction]
-    D -- No --> F[Display Healthy Crop]
-    E --> G[Suggested Treatment]
-    G --> H[Result Display]
-    F --> H[Result Display]
-    H --> I[Save Results to Database]
+    D -- Yes --> E[Display Disease & Confidence Score]
+    E --> F[Suggest Treatment]
+    F --> G[Display Results]
+    D -- No --> H[Display Healthy Crop]
+    H --> G
+    G --> I[Save to MongoDB]
+    I --> J[Notify User]
+    J --> K[View Saved Results on Dashboard]
 ```
 
 ### Explanation:
@@ -41,6 +44,7 @@ graph TD
 4. **Decision Point**: If a disease is detected, the system displays the disease type and recommended treatment. If no disease is detected, it displays that the crop is healthy.
 5. **Result Display**: The result is shown to the user in the frontend, along with bounding boxes (if applicable).
 6. **Data Storage**: The results (disease type, crop image, and recommendations) are stored in the database for future reference.
+7. **Notifications**: The user receives a notification about the result and can view it in their dashboard.
 
 ## How It Works
 1. **Data Collection**: The system uses a large dataset of crop images labeled with corresponding diseases. The dataset is essential for training the AI model.
@@ -93,11 +97,38 @@ This project uses the **PlantVillage dataset**, a publicly available dataset con
 - **Output**: The predicted disease class and confidence score
 - **Evaluation Metrics**: Accuracy, Precision, Recall, F1-Score
 
+## Cloud Deployment
+To ensure scalability and performance, the application is deployed on **AWS EC2**. You can easily configure your instance and deploy the Flask and React.js apps on the cloud.
+
+### Steps for Deployment:
+1. Launch an EC2 instance with a Python and Node.js environment.
+2. Clone the repository to the EC2 instance.
+3. Install the required dependencies using the steps mentioned above.
+4. Configure security groups to allow inbound HTTP/HTTPS traffic.
+5. Use a process manager like **PM2** to keep the server running.
+6. Optionally, set up a domain and SSL certificate for secure access.
+
 ## Future Enhancements
-- **Mobile App Development**: Building a mobile app for use in remote areas.
+- **Mobile App Development**: Build a mobile app for use in remote areas.
 - **Expand Crop and Disease Types**: Extend support to more crops and more specific disease types.
 - **Multi-Language Support**: Add support for multiple languages for better accessibility to farmers globally.
 - **Integrate Satellite Imagery**: Extend the project to support aerial and satellite imagery for large-scale disease monitoring.
+- **Real-time Notification System**: Implement SMS or push notifications for real-time alerts.
 
 ## Contributing
 We welcome contributions! Please open an issue or submit a pull request if you have suggestions or improvements.
+
+### Steps for Contributing:
+1. Fork the repository.
+2. Create a new feature branch.
+3. Commit your changes.
+4. Push the changes and create a pull request.
+   
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+If you have any questions or feedback, feel free to reach out:
+
+- Email: [youremail@example.com](mailto:youremail@example.com)
+- GitHub: [your-username](https://github.com/your-username)
